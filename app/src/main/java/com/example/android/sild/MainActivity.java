@@ -1,13 +1,18 @@
 package com.example.android.sild;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import javax.xml.transform.Result;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+//import com.google.zxing.integration.android.IntentIntegrator;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -19,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        verifyPermission();
+        scanCode();
     }
 
-    public void scanCode (View view){
+    public void scanCode() {
         scannerView = new ZXingScannerView(this);
         scannerView.setResultHandler(new ZXingScannerResultHandler());
         Log.d("This is a test", "message here");
@@ -30,17 +38,44 @@ public class MainActivity extends AppCompatActivity {
         Log.d("This is a test", "message here 2");
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        scannerView.stopCamera();
+    //button detection handler
+    public void scanCode(View view) {
+        scannerView = new ZXingScannerView(this);
+        scannerView.setResultHandler(new ZXingScannerResultHandler());
+
+        Log.d("This is a test", "message here");
+        setContentView(scannerView);
+        scannerView.startCamera();
+        Log.d("This is a test", "message here 2");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
+    private void verifyPermission() {
+        Log.d("TAG", "verifyPermission: asking user for permissions");
+        String[] permissions = new String[]{Manifest.permission.CAMERA};
 
-    class ZXingScannerResultHandler implements ZXingScannerView.ResultHandler
-    {
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(), permissions[0]) == PackageManager.PERMISSION_GRANTED) {
+            return;
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        verifyPermission();
+    }
+
+    class ZXingScannerResultHandler implements ZXingScannerView.ResultHandler {
         @Override
         public void handleResult(com.google.zxing.Result result) {
             Log.d("This is a test", "message here 3");
@@ -50,7 +85,5 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             scannerView.stopCamera();
         }
-
-
     }
 }
