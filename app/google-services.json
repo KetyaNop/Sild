@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "363487094395",
+    "firebase_url": "https://sild-b5d1d.firebaseio.com",
+    "project_id": "sild-b5d1d",
+    "storage_bucket": "sild-b5d1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363487094395:android:95df7b8803105efbb5e4de",
+        "android_client_info": {
+          "package_name": "com.example.android.sild"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363487094395-1hekvev0662gdnegfl9qmfk0b11nsn0c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.sild",
+            "certificate_hash": "8e59f2a7fd930390949e1d9531f95ff0b96b9e5e"
+          }
+        },
+        {
+          "client_id": "363487094395-20f73g0vme8j9dec39ffldoo1sqb1vst.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk85x0aWojouq933eafTYcSHw_PoU0GM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363487094395-20f73g0vme8j9dec39ffldoo1sqb1vst.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
